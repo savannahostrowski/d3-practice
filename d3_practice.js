@@ -1,23 +1,3 @@
-/*d3.select("body")
-	.append("svg")
-		.attr("width",50)
-		.attr("height", 50)
-	.append("circle")
-		.attr("cx",25)
-		.attr("cy",25)
-		.attr("r",25)
-		.style("fill", "purple");
-
-d3.select("body")
-	.append("svg")
-		.attr("width", 250)
-		.attr ("height", 50)
-	.append("text")
-		.text("Savannah Ostrowski")
-		.attr("x", 0)
-		.attr("y", 25)
-		.style("fill", "purple")*/
-
 var w = 500;
 var h = 100;
 var padding = 2;
@@ -32,14 +12,10 @@ svg.selectAll("rect")
 	.data(dataset)
 	.enter()
 	.append("rect")
-		.attr("x", function(d, i){ 
-			return (i * (w / dataset.length));})
-		.attr("y", function(d){
-			return h - (d * 4);
-		})
-		.attr("width", w / dataset.length - padding)
-		.attr("height", function(d){
-			return (d * 4);
-		}
-			);
-	
+		.attr({
+			x: function(d, i){return (i * (w / dataset.length));},
+		 	y: function(d){return h - (d * 4);},
+			width: w / dataset.length - padding,
+			height: function(d){return (d * 4);},
+			fill: function(d){return "rgb(0, " + (d * 10) + ", 0)";}
+		});
